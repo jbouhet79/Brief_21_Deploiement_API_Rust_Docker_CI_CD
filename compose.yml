@@ -1,0 +1,41 @@
+services:
+  api:
+    image: brief21-jb-v2
+      #    labels:
+      #- traefik.enable=true
+      #- traefik.http.routes.jb-api.rule=Host(`api-jb.nocturlab.fr`)
+      #- traefik.http.services.jb-api.loadbalancer.server.port=8080
+    networks:
+      #- traefik
+      - app
+    ports:
+      - "8079:8080"  
+    environment:
+      HOST: 0.0.0.0
+      POSTGRES_HOST: db:5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    depends_on:
+      - db
+      
+  db: 
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: app
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - db
+      - app
+
+volumes:
+  db_data:
+
+networks:
+  app:
+  db:
+    #traefik:
+    #  external: true
+    #  name: traefik_default
