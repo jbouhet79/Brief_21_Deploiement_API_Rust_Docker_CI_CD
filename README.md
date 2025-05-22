@@ -49,7 +49,7 @@ remarque : possibilité d'ajouter l'affichage des 100 dernères lignes de log de
 docker compose up -d && docker compose -p traefik logs -f -n100
 ```
 
-- Vérifier que cela fonctionne dans le navigateur à l'adresse définie dans le compose.yml: <http://api-jb.nocturlab.fr>
+- Vérifier que cela fonctionne dans le navigateur à l'adresse définie dans le compose.yml: <https://api-jb.nocturlab.fr>
 
 
 
